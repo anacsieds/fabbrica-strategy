@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>A Fabbrica Café — Strategic Instagram Report 2026</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#F7F4F0;color:#1a1a1a;min-height:100vh}
+.page{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+
+/* HEADER */
+.header{display:flex;align-items:center;gap:18px;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid #E2DCD5}
+.logo{width:56px;height:56px;border-radius:50%;background:#B37335;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;font-weight:700;flex-shrink:0}
+.header-text h1{font-size:24px;font-weight:700;color:#1a1a1a}
+.header-text p{font-size:13px;color:#888;margin-top:3px;letter-spacing:.3px}
+.header-meta{margin-left:auto;text-align:right;flex-shrink:0}
+.header-meta .pill{display:inline-block;font-size:11px;padding:4px 10px;border-radius:999px;background:#FDF5EC;color:#7A4B1E;border:1px solid #D4A574;margin-bottom:4px}
+.header-meta p{font-size:11px;color:#aaa}
+
+/* TABS */
+.tabs{display:flex;gap:6px;margin-bottom:2rem;flex-wrap:wrap}
+.tab{padding:8px 16px;border-radius:999px;border:1px solid #D8D2CA;font-size:13px;cursor:pointer;background:#fff;color:#666;transition:all .15s;white-space:nowrap}
+.tab:hover{border-color:#B37335;color:#B37335}
+.tab.active{background:#B37335;color:#fff;border-color:#B37335}
+
+/* SECTIONS */
+.section{display:none}
+.section.active{display:block}
+
+/* CARDS */
+.card{background:#fff;border:1px solid #E8E2DA;border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1rem}
+.card h3{font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:10px}
+.card p,.card li{font-size:14px;color:#555;line-height:1.7}
+.card ul{padding-left:1.3rem}
+.card li{margin-bottom:4px}
+.card-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+
+/* HIGHLIGHT */
+.highlight{background:#FDF5EC;border:1px solid #D4A574;border-radius:10px;padding:14px 18px;margin-bottom:1rem}
+.highlight p{font-size:14px;color:#7A4B1E;line-height:1.7}
+.highlight strong{color:#5C3110}
+.highlight-blue{background:#EEF4FF;border:1px solid #B0C6F0;border-radius:10px;padding:14px 18px;margin-bottom:1rem}
+.highlight-blue p{font-size:14px;color:#1D4088;line-height:1.7}
+
+/* METRICS */
+.metric-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1rem}
+.metric{background:#fff;border:1px solid #E8E2DA;border-radius:10px;padding:14px;text-align:center}
+.metric .val{font-size:22px;font-weight:700;color:#B37335}
+.metric .lbl{font-size:12px;color:#888;margin-top:4px;line-height:1.4}
+
+/* COMPETITORS */
+.competitor-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1rem}
+.comp-card{background:#fff;border:1px solid #E8E2DA;border-radius:10px;padding:14px}
+.comp-card .name{font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:6px}
+.comp-card .tag{display:inline-block;font-size:11px;padding:2px 9px;border-radius:999px;background:#F1EFE8;color:#6B6355;margin-bottom:8px}
+.comp-card p{font-size:12px;color:#777;line-height:1.6}
+.comp-card .gap-badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:4px;background:#FFF0E8;color:#993D0F;border:1px solid #F5C5A3;margin-top:6px}
+
+/* PILLARS */
+.pillar-list{display:flex;flex-direction:column;gap:8px}
+.pillar{display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #E8E2DA;border-radius:10px;padding:13px 16px}
+.pillar-num{width:28px;height:28px;border-radius:50%;background:#B37335;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.pillar-body h4{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:4px}
+.pillar-body p{font-size:13px;color:#666;line-height:1.6}
+.pillar-body .examples{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.pillar-body .ex{font-size:11px;padding:2px 9px;border-radius:999px;background:#F7F4F0;color:#7A6050;border:1px solid #E2DCD5}
+
+/* STEPS */
+.step-list{display:flex;flex-direction:column;gap:8px}
+.step{display:flex;align-items:center;gap:12px;background:#FAF7F4;border:1px solid #E8E2DA;border-radius:8px;padding:11px 14px}
+.step-num{width:24px;height:24px;border-radius:50%;background:#F1EFE8;color:#7A4B1E;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step p{font-size:14px;color:#555}
+
+/* BADGE */
+.badge{display:inline-block;font-size:12px;padding:4px 12px;border-radius:999px;background:#FDF5EC;color:#7A4B1E;border:1px solid #D4A574;margin-bottom:14px}
+
+/* SIGNAL CARDS (algorithm) */
+.signal-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1rem}
+.signal{background:#fff;border:1px solid #E8E2DA;border-radius:10px;padding:14px}
+.signal .rank{font-size:10px;font-weight:700;letter-spacing:.5px;color:#B37335;text-transform:uppercase;margin-bottom:6px}
+.signal h4{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:6px}
+.signal p{font-size:12px;color:#666;line-height:1.6}
+
+/* HOOK FORMULAS */
+.hook-list{display:flex;flex-direction:column;gap:8px;margin-bottom:1rem}
+.hook{background:#fff;border-left:3px solid #B37335;border-radius:0 8px 8px 0;padding:12px 14px;border-top:1px solid #E8E2DA;border-right:1px solid #E8E2DA;border-bottom:1px solid #E8E2DA}
+.hook .label{font-size:11px;font-weight:700;color:#B37335;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.hook p{font-size:13px;color:#444;line-height:1.6;font-style:italic}
+.hook .note{font-size:12px;color:#888;margin-top:5px;font-style:normal}
+
+/* PROMOTION CALENDAR */
+.week-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin-bottom:1.2rem}
+.day-col{border-radius:8px;overflow:hidden;border:1px solid #E8E2DA}
+.day-header{background:#F7F4F0;padding:6px 4px;text-align:center;font-size:11px;font-weight:700;color:#888;border-bottom:1px solid #E8E2DA}
+.day-header.hot{background:#FDF5EC;color:#B37335}
+.day-body{padding:6px 5px;min-height:80px}
+.post-chip{font-size:10px;padding:3px 5px;border-radius:4px;margin-bottom:4px;line-height:1.4}
+.chip-reel{background:#FDF5EC;color:#7A4B1E;border:1px solid #E8C89A}
+.chip-story{background:#EEF4FF;color:#1D4088;border:1px solid #A0BFF5}
+.chip-carousel{background:#F0FBF4;color:#1A6B36;border:1px solid #94D4AC}
+.chip-boost{background:#FFF0E8;color:#993D0F;border:1px solid #F5C5A3}
+
+/* PROMOTION TYPES */
+.promo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
+.promo-card{background:#fff;border:1px solid #E8E2DA;border-radius:10px;padding:14px}
+.promo-card .promo-type{font-size:11px;font-weight:700;color:#B37335;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.promo-card h4{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:8px}
+.promo-card p,.promo-card li{font-size:13px;color:#555;line-height:1.6}
+.promo-card ul{padding-left:1.2rem}
+.promo-card li{margin-bottom:3px}
+
+/* SECTION TITLE */
+.sec-title{font-size:13px;font-weight:700;color:#B37335;text-transform:uppercase;letter-spacing:.8px;margin-bottom:.8rem}
+
+/* FORMAT TABLE */
+.format-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:1rem}
+.format-table th{text-align:left;padding:8px 12px;background:#F7F4F0;font-weight:700;font-size:12px;color:#666;border-bottom:1px solid #E8E2DA}
+.format-table td{padding:9px 12px;border-bottom:1px solid #F0EBE5;color:#444;vertical-align:top}
+.format-table tr:last-child td{border-bottom:none}
+.format-table tr:hover td{background:#FAF8F5}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.dot-reel{background:#B37335}
+.dot-story{background:#3468D4}
+.dot-carousel{background:#24963A}
+.dot-static{background:#888}
+
+/* DO / DON'T */
+.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
+.do-box{background:#F0FBF4;border:1px solid #94D4AC;border-radius:10px;padding:14px}
+.dont-box{background:#FFF5F5;border:1px solid #F5AAAA;border-radius:10px;padding:14px}
+.do-box h4{font-size:13px;font-weight:700;color:#1A6B36;margin-bottom:8px}
+.dont-box h4{font-size:13px;font-weight:700;color:#993333;margin-bottom:8px}
+.do-box li,.dont-box li{font-size:13px;color:#444;line-height:1.6;margin-bottom:3px}
+.do-box ul,.dont-box ul{padding-left:1.2rem}
+
+/* TIMING BLOCKS */
+.timing-row{display:flex;flex-direction:column;gap:8px;margin-bottom:1rem}
+.timing-item{display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #E8E2DA;border-radius:8px;padding:11px 14px}
+.timing-time{min-width:90px;font-size:12px;font-weight:700;color:#B37335;flex-shrink:0;margin-top:2px}
+.timing-body h5{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:3px}
+.timing-body p{font-size:13px;color:#666;line-height:1.5}
+
+/* KPI TABLE */
+.kpi-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:1rem}
+.kpi{background:#fff;border:1px solid #E8E2DA;border-radius:10px;padding:12px 14px}
+.kpi .kpi-label{font-size:12px;color:#888;margin-bottom:4px}
+.kpi .kpi-target{font-size:18px;font-weight:700;color:#B37335}
+.kpi .kpi-note{font-size:11px;color:#aaa;margin-top:3px}
+
+/* DIVIDER */
+.divider{border:none;border-top:1px solid #E8E2DA;margin:1.2rem 0}
+
+@media(max-width:580px){
+  .competitor-grid,.metric-row,.signal-row,.card-row,.promo-grid,.do-dont,.kpi-grid{grid-template-columns:1fr}
+  .week-grid{grid-template-columns:repeat(4,1fr)}
+  .day-col:nth-child(n+5){display:none}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="logo">F</div>
+    <div class="header-text">
+      <h1>A Fabbrica Café</h1>
+      <p>Strategic Instagram Report · Quiririm, Taubaté SP</p>
+    </div>
+    <div class="header-meta">
+      <div class="pill">2026 Edition</div>
+      <p>Prepared by Caruma</p>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="show('context',this)">Context</button>
+    <button class="tab" onclick="show('competition',this)">Competition</button>
+    <button class="tab" onclick="show('audience',this)">Audience</button>
+    <button class="tab" onclick="show('content',this)">Content</button>
+    <button class="tab" onclick="show('algorithm',this)">Algorithm</button>
+    <button class="tab" onclick="show('promotion',this)">Promotion</button>
+    <button class="tab" onclick="show('nextsteps',this)">Next Steps</button>
+  </div>
+
+  <!-- ===== CONTEXT ===== -->
+  <div id="context" class="section active">
+    <div class="highlight">
+      <p><strong>Strategic opportunity:</strong> Fabbrica can be the comfortable, beautiful, and delicious café that the region was missing — for couples and women 35+ who value authenticity and craft. It's aesthetically distinct, technically strong, and positioned in a location with a natural tourist flow.</p>
+    </div>
+
+    <p class="sec-title">The business</p>
+    <div class="card-row">
+      <div class="card">
+        <h3>What makes it unique</h3>
+        <ul>
+          <li>Set inside an <strong>active ceramic factory</strong> — an atmosphere no competitor can replicate</li>
+          <li>Proprietary clay-filter brewing method, handmade on site</li>
+          <li>Tableware and tables handcrafted by the owners</li>
+          <li>Sells curated products from local artisan partners</li>
+          <li>Periodic events: craft fairs, cultural gatherings</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Location advantages</h3>
+        <ul>
+          <li>Quiririm has Italian heritage — strong local identity</li>
+          <li>En route to <strong>Campos do Jordão</strong> — natural weekend tourist flow</li>
+          <li>Part of rural tourism circuits</li>
+          <li>Car-accessible from central Taubaté</li>
+          <li>Under-served neighbourhood for the 30–50 female demographic</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="sec-title">Key numbers</p>
+    <div class="metric-row">
+      <div class="metric"><div class="val">3×</div><div class="lbl">Reels per week minimum</div></div>
+      <div class="metric"><div class="val">R$40–60</div><div class="lbl">Average ticket per person</div></div>
+      <div class="metric"><div class="val">60 min+</div><div class="lbl">Target stay per visit</div></div>
+    </div>
+    <div class="metric-row">
+      <div class="metric"><div class="val">30–50</div><div class="lbl">Primary target age range</div></div>
+      <div class="metric"><div class="val">2</div><div class="lbl">Ideal group size (friend duo or couple)</div></div>
+      <div class="metric"><div class="val">Wed–Thu</div><div class="lbl">Days to stimulate — lowest footfall</div></div>
+    </div>
+
+    <p class="sec-title">Strategic goals for Instagram</p>
+    <div class="card">
+      <h3>Three objectives, in order of priority</h3>
+      <ul>
+        <li><strong>Generate planned visits</strong> — the audience chooses Fabbrica in advance, schedules with a friend, and makes it a recurring outing</li>
+        <li><strong>Justify a higher ticket</strong> — communicate the full experience (space + food + coffee + conversation), not just price-driven impulse</li>
+        <li><strong>Build Wednesday–Thursday demand</strong> — create content specifically targeting weekday afternoon visits to reduce peak/off-peak imbalance</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== COMPETITION ===== -->
+  <div id="competition" class="section">
+    <div class="highlight">
+      <p><strong>The gap:</strong> None of the three local competitors speaks to women who want an authentic, delicious, and comfortable café for a weekend outing or a weekday afternoon with friends. That territory is completely open in Quiririm.</p>
+    </div>
+
+    <p class="sec-title">Competitor landscape</p>
+    <div class="competitor-grid">
+      <div class="comp-card">
+        <div class="name">Estação Quiririm</div>
+        <div class="tag">Casual · Family</div>
+        <p>Amateur, homey content. Appeals to families on day trips. Valorises local landscape and homemade sweets. No aesthetic strategy.</p>
+        <div class="gap-badge">No visual appeal</div>
+      </div>
+      <div class="comp-card">
+        <div class="name">Santa Justa</div>
+        <div class="tag">British · Traditional</div>
+        <p>Afternoon tea aesthetic — lace, fine porcelain, floral. Speaks to older women with a taste for the formal. Excludes younger or trendier audiences.</p>
+        <div class="gap-badge">Excludes modern audience</div>
+      </div>
+      <div class="comp-card">
+        <div class="name">Empório Q!</div>
+        <div class="tag">Sophisticated · Couples</div>
+        <p>Wine, brunch towers, elaborate desserts. Most sophisticated competitor, but oriented toward couples. Limited appeal for women going out with friends.</p>
+        <div class="gap-badge">Couple-only framing</div>
+      </div>
+    </div>
+
+    <p class="sec-title">Comparative positioning</p>
+    <div class="card">
+      <table class="format-table">
+        <thead>
+          <tr><th>Dimension</th><th>Estação Quiririm</th><th>Santa Justa</th><th>Empório Q!</th><th style="color:#B37335">Fabbrica</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Aesthetic</td><td>Rustic/amateur</td><td>British/floral</td><td>Polished/dark</td><td style="color:#B37335">Warm/artisan</td></tr>
+          <tr><td>Primary audience</td><td>Families</td><td>Older women</td><td>Couples</td><td style="color:#B37335">Women 30–50</td></tr>
+          <tr><td>Social tone</td><td>Folksy</td><td>Refined/old</td><td>Aspirational</td><td style="color:#B37335">Authentic/warm</td></tr>
+          <tr><td>Food focus</td><td>Homemade sweets</td><td>Tea & pastries</td><td>Brunch & wine</td><td style="color:#B37335">Craft coffee + food</td></tr>
+          <tr><td>Instagram quality</td><td>Low</td><td>Medium</td><td>Medium-high</td><td style="color:#B37335">High (target)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight-blue">
+      <p><strong>Strategic implication:</strong> Fabbrica should not try to out-do Empório Q! on sophistication or Santa Justa on femininity. The winning position is <em>authentic warmth</em> — the place that feels real, beautiful, and genuinely good. Not pretentious. The kind of place you want to tag and tell a friend about.</p>
+    </div>
+  </div>
+
+  <!-- ===== AUDIENCE ===== -->
+  <div id="audience" class="section">
+    <p class="sec-title">Primary persona</p>
+    <div class="card">
+      <h3>Women aged 30–50, Vale do Paraíba</h3>
+      <ul>
+        <li>Goes out on weekday afternoons or early evenings with friends</li>
+        <li>Visits cafés and restaurants on weekends with a partner or group</li>
+        <li>Loves good food, sweets, and anything visually beautiful</li>
+        <li>Has aesthetic taste but is not affected — not a "clean girl" or minimalist</li>
+        <li>Lives in Vale do Paraíba — appreciates homemade and characterful things</li>
+        <li>Uses Instagram to <strong>discover, plan, and share</strong> outings with people she cares about</li>
+      </ul>
+    </div>
+
+    <p class="sec-title">What she does on Instagram</p>
+    <div class="card-row">
+      <div class="card">
+        <h3>Discovery behaviour</h3>
+        <ul>
+          <li>Scrolls Reels for inspiration and "places to go"</li>
+          <li>Saves content she wants to act on later</li>
+          <li>Sends Reels to friends as invitations ("wanna go?")</li>
+          <li>Looks for visual proof that a place is worth her time</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Planning behaviour</h3>
+        <ul>
+          <li>Researches a place before going — checks photos, vibe, menu</li>
+          <li>Plans outings in advance, especially mid-week</li>
+          <li>Chooses places she can photograph and share</li>
+          <li>Wants a full experience, not just a coffee</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="sec-title">Ideal visit scenario</p>
+    <div class="card">
+      <table class="format-table">
+        <tbody>
+          <tr><td><strong>Group</strong></td><td>2 people — two friends or a couple</td></tr>
+          <tr><td><strong>Typical order</strong></td><td>2 coffees + shared cheese bread + 1 toast each + dessert</td></tr>
+          <tr><td><strong>Average spend</strong></td><td>R$40–60 per person</td></tr>
+          <tr><td><strong>Stay</strong></td><td>At least 1 hour</td></tr>
+          <tr><td><strong>Post-visit action</strong></td><td>Tags Fabbrica on Instagram, sends to a friend</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="sec-title">Secondary audiences (future phases)</p>
+    <div class="card-row">
+      <div class="card">
+        <h3>Local Quiririm residents</h3>
+        <p>The established older population. Buildable as loyal regulars through physical flyers, word of mouth, and consistent quality. Not the Instagram focus, but valuable long-term.</p>
+      </div>
+      <div class="card">
+        <h3>Weekend tourists</h3>
+        <p>Travellers on the Taubaté–Campos do Jordão route. Discovery happens via Instagram Explore and location tags. Requires strong geolocation strategy.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CONTENT ===== -->
+  <div id="content" class="section">
+    <div class="highlight">
+      <p>Every piece of content should trigger at least one of three behaviours: <strong>share with a friend</strong>, <strong>save for later</strong>, or <strong>plan a visit</strong>. If a post doesn't push toward one of these, it shouldn't be posted.</p>
+    </div>
+
+    <p class="sec-title">Content mix — weekly rhythm</p>
+    <div class="card">
+      <table class="format-table">
+        <thead><tr><th>Format</th><th>Frequency</th><th>Goal</th><th>Primary action</th></tr></thead>
+        <tbody>
+          <tr><td><span class="dot dot-reel"></span>Reel – food/coffee</td><td>1× / week</td><td>Desire, appetite</td><td>Share with friend</td></tr>
+          <tr><td><span class="dot dot-reel"></span>Reel – experience</td><td>1× / week</td><td>Social aspiration</td><td>Plan a visit</td></tr>
+          <tr><td><span class="dot dot-reel"></span>Reel – product/routine</td><td>1× / week</td><td>Brand authority</td><td>Save</td></tr>
+          <tr><td><span class="dot dot-story"></span>Stories</td><td>Daily (5–7)</td><td>Visibility + intimacy</td><td>Keep followers warm</td></tr>
+          <tr><td><span class="dot dot-carousel"></span>Carousel</td><td>1–2× / week</td><td>Engagement, saves</td><td>Save / swipe</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="sec-title">The 5 content pillars</p>
+    <div class="pillar-list" style="margin-bottom:1rem">
+      <div class="pillar">
+        <div class="pillar-num">1</div>
+        <div class="pillar-body">
+          <h4>Food & coffee — finished</h4>
+          <p>Close-up, warm light, texture and steam. The viewer should almost taste it. This is the highest-performing category for cafés and the main driver of impulse sharing.</p>
+          <div class="examples">
+            <span class="ex">Specialty coffee pull</span><span class="ex">Toast close-up</span><span class="ex">Cheese bread out of the oven</span><span class="ex">Dessert in detail</span>
+          </div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">2</div>
+        <div class="pillar-body">
+          <h4>Method — how it's made</h4>
+          <p>The clay filter and proprietary brewing method are Fabbrica's strongest differentiator. Show the process. This humanises the brand, builds authority, and explains why the experience is worth the ticket.</p>
+          <div class="examples">
+            <span class="ex">Clay filter assembly</span><span class="ex">Extraction process</span><span class="ex">Plating food</span><span class="ex">Ingredient sourcing</span>
+          </div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">3</div>
+        <div class="pillar-body">
+          <h4>Atmosphere</h4>
+          <p>The factory setting is the hero. Warm afternoon light, ceramic textures, handmade furniture. This content creates desire to <em>be there</em> — essential for driving planned visits.</p>
+          <div class="examples">
+            <span class="ex">Afternoon light in the space</span><span class="ex">Ceramic details</span><span class="ex">Table set-up</span><span class="ex">Factory textures</span>
+          </div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">4</div>
+        <div class="pillar-body">
+          <h4>Friends gathering</h4>
+          <p>Show real social moments — hands on cups, laughter at the table, two people sharing a dessert. No need for faces. The goal is "I want to do this with my friend." This is the highest DM-share trigger.</p>
+          <div class="examples">
+            <span class="ex">Hands around coffee cups</span><span class="ex">Shared dessert moment</span><span class="ex">Conversation at table</span>
+          </div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">5</div>
+        <div class="pillar-body">
+          <h4>Daily routine & team</h4>
+          <p>Behind the scenes: opening the café, prep before service, the owners in the space. Builds emotional connection with the brand and creates the "local favourite" feeling.</p>
+          <div class="examples">
+            <span class="ex">Morning opening</span><span class="ex">Pre-service prep</span><span class="ex">Owner moments</span><span class="ex">Craft fair setup</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="sec-title">Visual identity guidelines</p>
+    <div class="do-dont">
+      <div class="do-box">
+        <h4>✓ Do</h4>
+        <ul>
+          <li>Warm, amber-toned colour grade</li>
+          <li>Natural light — morning or golden hour</li>
+          <li>Textured backgrounds: clay, wood, linen</li>
+          <li>Tight close-ups of food and hands</li>
+          <li>Consistent colour temperature across all posts</li>
+          <li>4:5 or 9:16 aspect ratio for all posts</li>
+        </ul>
+      </div>
+      <div class="dont-box">
+        <h4>✗ Don't</h4>
+        <ul>
+          <li>Cold, blue-tinted or flat light</li>
+          <li>Minimalist/clean aesthetic — not on brand</li>
+          <li>Watermarks from other apps (TikTok, CapCut)</li>
+          <li>Cluttered captions with 20+ hashtags</li>
+          <li>Inconsistent colour grades across posts</li>
+          <li>Stock-looking or over-edited imagery</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="sec-title">Caption strategy</p>
+    <div class="card">
+      <h3>How to write captions that convert</h3>
+      <ul>
+        <li><strong>First line is everything</strong> — the hook must be visible before the "more" button. Make it emotional or curiosity-driven, not descriptive.</li>
+        <li><strong>Write for sharing</strong> — "tag someone who needs this" or "send this to your coffee friend" consistently outperform informational captions.</li>
+        <li><strong>3–5 hashtags max</strong> — 2026 data confirms hashtag stuffing is penalised. Use hyper-specific ones: #cafequiririm, #cafetaubate, #valedoparaiba.</li>
+        <li><strong>Keywords in captions matter</strong> — Instagram indexes captions for search. Include "café Quiririm", "café Taubaté", "café artesanal".</li>
+        <li><strong>Call to action every post</strong> — save, share, comment, or visit. One CTA per post, never all four.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== ALGORITHM ===== -->
+  <div id="algorithm" class="section">
+    <div class="highlight">
+      <p><strong>2026 shift:</strong> Instagram now runs multiple separate AI ranking systems — one each for Feed, Reels, Stories, and Explore. Understanding which signals matter for each is the difference between organic growth and invisible content.</p>
+    </div>
+
+    <p class="sec-title">The 3 ranking signals (confirmed by Adam Mosseri, Jan 2025)</p>
+    <div class="signal-row">
+      <div class="signal">
+        <div class="rank">#1 Signal</div>
+        <h4>Watch time</h4>
+        <p>How long people watch, especially past the first 3 seconds. A 10s Reel with 80% retention beats a 60s Reel with 30% retention every time.</p>
+      </div>
+      <div class="signal">
+        <div class="rank">#2 Followers</div>
+        <h4>Likes per reach</h4>
+        <p>For connected reach (your existing followers), the % of viewers who like your post matters. Focus on content your audience actually enjoys.</p>
+      </div>
+      <div class="signal">
+        <div class="rank">#1 New audience</div>
+        <h4>Sends per reach</h4>
+        <p>DM shares are the strongest signal for reaching non-followers. 694,000 Reels are shared via DM every minute. Make content worth forwarding.</p>
+      </div>
+    </div>
+
+    <p class="sec-title">The critical first 3 seconds</p>
+    <div class="card">
+      <h3>Hook strategy — your most important creative decision</h3>
+      <p style="margin-bottom:10px">Up to 50% of viewers drop off in the first 3 seconds. Instagram reads this as a signal not to distribute the content further. Aim for 60%+ retention past the 3-second mark.</p>
+    </div>
+    <p class="sec-title" style="margin-top:.5rem">Hook formulas that work for Fabbrica</p>
+    <div class="hook-list">
+      <div class="hook">
+        <div class="label">Visual hook — no words needed</div>
+        <p>Open on the closest, most appetising shot. Steam rising from coffee, cheese bread breaking open, a dessert being plated. No intro, no logo. Start mid-action.</p>
+        <div class="note">Best for: food reels. Goal: desire and shares.</div>
+      </div>
+      <div class="hook">
+        <div class="label">Curiosity / "wait for it"</div>
+        <p>"You've never had coffee filtered like this." / "This is why our coffee tastes different."</p>
+        <div class="note">Best for: method reels. Goal: saves and follows.</div>
+      </div>
+      <div class="hook">
+        <div class="label">Social invitation</div>
+        <p>"Send this to someone you want to go with." / "This is your sign to plan that café afternoon."</p>
+        <div class="note">Best for: experience reels. Goal: DM shares and visit planning.</div>
+      </div>
+      <div class="hook">
+        <div class="label">Local identity</div>
+        <p>"Best kept secret in Quiririm." / "Hidden inside a working ceramic factory."</p>
+        <div class="note">Best for: atmosphere reels. Goal: Explore reach + tourist discovery.</div>
+      </div>
+    </div>
+
+    <p class="sec-title">2026 algorithm updates you need to know</p>
+    <div class="card-row">
+      <div class="card">
+        <h3>"Your Algorithm" — Dec 2025</h3>
+        <p>Users now explicitly choose topics they want to see. Reels that match selected topics see <strong>40–50% higher reach</strong>. This means Fabbrica's content must be clearly categorised — food, coffee, local, lifestyle — not generic.</p>
+      </div>
+      <div class="card">
+        <h3>Views as primary metric</h3>
+        <p>Instagram officially transitioned to <strong>Views</strong> as the main metric across all formats. Track views, not just likes. A post with 500 views and 50 likes outperforms one with 200 views and 40 likes.</p>
+      </div>
+    </div>
+    <div class="card-row">
+      <div class="card">
+        <h3>Trial Reels</h3>
+        <p>Test a Reel with non-followers only before publishing to your audience. If it performs well in 24 hours, push it broadly. Use this to test new hook styles or experimental content without risking your engagement rate.</p>
+      </div>
+      <div class="card">
+        <h3>Google indexing</h3>
+        <p>Since mid-2025, Instagram posts are indexed by Google. Use keywords in captions ("café artesanal Taubaté") and alt text to capture search traffic beyond Instagram itself.</p>
+      </div>
+    </div>
+    <div class="card-row">
+      <div class="card">
+        <h3>Reels length</h3>
+        <p>7–30 seconds = best for new audience reach (high completion rate). 30–90 seconds = better for deeper storytelling with existing followers. <strong>Never exceed 90 seconds</strong> unless retention data is exceptional.</p>
+      </div>
+      <div class="card">
+        <h3>No watermarks</h3>
+        <p>Content with TikTok or CapCut watermarks is actively penalised and will not be recommended to new audiences. Edit natively in Instagram or use watermark-free tools.</p>
+      </div>
+    </div>
+
+    <p class="sec-title">Format performance summary</p>
+    <div class="card">
+      <table class="format-table">
+        <thead><tr><th>Format</th><th>Best for</th><th>Avg engagement</th><th>Key metric to track</th></tr></thead>
+        <tbody>
+          <tr><td><span class="dot dot-reel"></span>Reels</td><td>Discovery, new audiences</td><td>2.46%</td><td>Views, sends, completion rate</td></tr>
+          <tr><td><span class="dot dot-carousel"></span>Carousels</td><td>Saves, existing followers</td><td>10.15%</td><td>Saves, swipe-through rate</td></tr>
+          <tr><td><span class="dot dot-story"></span>Stories</td><td>Daily visibility, intimacy</td><td>35% reach increase (small accounts)</td><td>Replies, sticker interactions</td></tr>
+          <tr><td><span class="dot dot-static"></span>Static posts</td><td>Feed aesthetic, announcements</td><td>0.70%</td><td>Reach, profile visits</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="sec-title">Key performance targets (first 90 days)</p>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">3-second retention rate</div><div class="kpi-target">60%+</div><div class="kpi-note">Check in Instagram Insights per Reel</div></div>
+      <div class="kpi"><div class="kpi-label">Sends per Reel</div><div class="kpi-target">Growing weekly</div><div class="kpi-note">Most important signal for new reach</div></div>
+      <div class="kpi"><div class="kpi-label">Stories per day</div><div class="kpi-target">5–7</div><div class="kpi-note">Keeps account top-of-feed for followers</div></div>
+      <div class="kpi"><div class="kpi-label">Hashtags per post</div><div class="kpi-target">3–5</div><div class="kpi-note">Niche-specific, not generic</div></div>
+    </div>
+  </div>
+
+  <!-- ===== PROMOTION ===== -->
+  <div id="promotion" class="section">
+    <div class="highlight">
+      <p><strong>The promotion principle:</strong> Organic content builds credibility. Paid promotion amplifies what's already working. Only boost a Reel that has already shown strong organic engagement — never pay to rescue underperforming content.</p>
+    </div>
+
+    <p class="sec-title">When to post — timing for cafés</p>
+    <div class="timing-row">
+      <div class="timing-item">
+        <div class="timing-time">Thu & Fri<br>12–3 PM</div>
+        <div class="timing-body">
+          <h5>🔥 Prime window — weekend visit planning</h5>
+          <p>This is when your audience is thinking about weekend plans. Food content posted Thursday–Friday afternoon drives the highest weekend footfall. Post your best food and experience Reels here.</p>
+        </div>
+      </div>
+      <div class="timing-item">
+        <div class="timing-time">Tue & Wed<br>11 AM–1 PM</div>
+        <div class="timing-body">
+          <h5>Mid-week reach window</h5>
+          <p>Strong for broad content reaching new audiences. Use for atmosphere Reels and method content. Also strategic for stimulating Wednesday–Thursday afternoon visits specifically.</p>
+        </div>
+      </div>
+      <div class="timing-item">
+        <div class="timing-time">Daily<br>8–10 AM</div>
+        <div class="timing-body">
+          <h5>Stories — every single morning</h5>
+          <p>Stories should be posted daily to keep Fabbrica visible at the top of followers' feeds. Morning posts catch the "just woke up" scroll. Behind-the-scenes, daily specials, team moments.</p>
+        </div>
+      </div>
+      <div class="timing-item">
+        <div class="timing-time">Sat & Sun<br>2–4 PM</div>
+        <div class="timing-body">
+          <h5>Weekend engagement peak — food & local</h5>
+          <p>Data confirms food and hospitality brands see strong weekend PM engagement. Post social/friends content here — people are out or planning to go out. This window also catches tourists already in the region.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="sec-title">Suggested weekly posting calendar</p>
+    <div class="week-grid">
+      <div class="day-col">
+        <div class="day-header">MON</div>
+        <div class="day-body">
+          <div class="post-chip chip-story">Story: behind scenes</div>
+          <div class="post-chip chip-story">Story: daily item</div>
+        </div>
+      </div>
+      <div class="day-col">
+        <div class="day-header">TUE</div>
+        <div class="day-body">
+          <div class="post-chip chip-reel">Reel: method</div>
+          <div class="post-chip chip-story">Story: poll or quiz</div>
+        </div>
+      </div>
+      <div class="day-col">
+        <div class="day-header hot">WED</div>
+        <div class="day-body">
+          <div class="post-chip chip-carousel">Carousel: menu items</div>
+          <div class="post-chip chip-story">Story: "come in today"</div>
+        </div>
+      </div>
+      <div class="day-col">
+        <div class="day-header hot">THU</div>
+        <div class="day-body">
+          <div class="post-chip chip-reel">Reel: food/coffee</div>
+          <div class="post-chip chip-boost">↑ Boost if strong</div>
+          <div class="post-chip chip-story">Story: weekend teaser</div>
+        </div>
+      </div>
+      <div class="day-col">
+        <div class="day-header hot">FRI</div>
+        <div class="day-body">
+          <div class="post-chip chip-reel">Reel: experience</div>
+          <div class="post-chip chip-story">Story: "who are you bringing?"</div>
+        </div>
+      </div>
+      <div class="day-col">
+        <div class="day-header">SAT</div>
+        <div class="day-body">
+          <div class="post-chip chip-story">Story: live from space</div>
+          <div class="post-chip chip-story">Story: repost tags</div>
+        </div>
+      </div>
+      <div class="day-col">
+        <div class="day-header">SUN</div>
+        <div class="day-body">
+          <div class="post-chip chip-carousel">Carousel: atmosphere</div>
+          <div class="post-chip chip-story">Story: closing recap</div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:#aaa;margin-bottom:1.2rem">
+      <span style="display:inline-block;width:10px;height:10px;background:#FDF5EC;border:1px solid #E8C89A;border-radius:2px;margin-right:4px"></span>Reel &nbsp;
+      <span style="display:inline-block;width:10px;height:10px;background:#EEF4FF;border:1px solid #A0BFF5;border-radius:2px;margin-right:4px"></span>Story &nbsp;
+      <span style="display:inline-block;width:10px;height:10px;background:#F0FBF4;border:1px solid #94D4AC;border-radius:2px;margin-right:4px"></span>Carousel &nbsp;
+      <span style="display:inline-block;width:10px;height:10px;background:#FFF0E8;border:1px solid #F5C5A3;border-radius:2px;margin-right:4px"></span>Boost (paid)
+    </p>
+
+    <p class="sec-title">Promotion types</p>
+    <div class="promo-grid">
+      <div class="promo-card">
+        <div class="promo-type">Organic — always on</div>
+        <h4>DM-share bait content</h4>
+        <ul>
+          <li>Design every food and experience Reel to be forwarded</li>
+          <li>End with "send this to someone you'd bring here"</li>
+          <li>Track sends per Reel in Insights — this is your best growth signal</li>
+          <li>Reply to every comment in the first hour of posting</li>
+        </ul>
+      </div>
+      <div class="promo-card">
+        <div class="promo-type">Paid — Meta Ads</div>
+        <h4>Boosting top-performing Reels</h4>
+        <ul>
+          <li>Only boost Reels that already have 60%+ 3-second retention</li>
+          <li>Target: women 28–52, within 40km of Taubaté</li>
+          <li>Interest targeting: specialty coffee, weekend outings, food</li>
+          <li>Budget: R$15–25/day, Thursday–Sunday only</li>
+          <li>Objective: Video views or Reach (not Likes)</li>
+        </ul>
+      </div>
+      <div class="promo-card">
+        <div class="promo-type">Organic — local SEO</div>
+        <h4>Geolocation & keyword strategy</h4>
+        <ul>
+          <li>Always tag location: Quiririm, Taubaté</li>
+          <li>Use keywords in captions: "café Quiririm", "café artesanal Taubaté"</li>
+          <li>Posts are now indexed by Google — optimise for search</li>
+          <li>Engage with local hashtags: #taubate #quiririm #valedoparaiba</li>
+        </ul>
+      </div>
+      <div class="promo-card">
+        <div class="promo-type">Earned — micro influencers</div>
+        <h4>Local creator partnerships</h4>
+        <ul>
+          <li>Target creators with 3K–30K followers in Vale do Paraíba</li>
+          <li>Invite them for a free experience in exchange for content</li>
+          <li>Focus on food/lifestyle/travel creators, not just "influencers"</li>
+          <li>Ask them to tag location and use relevant hashtags</li>
+          <li>Repost their content in Stories immediately</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="sec-title">Content to promote vs. content to keep organic</p>
+    <div class="card">
+      <table class="format-table">
+        <thead><tr><th>Content type</th><th>Promote?</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr><td>Food close-up Reels</td><td>✅ Best for paid boost</td><td>Highest visual impact, stops scroll, broad appeal</td></tr>
+          <tr><td>Friends / social experience</td><td>✅ Boost if organic sends are high</td><td>DM-share trigger — amplify what people already share</td></tr>
+          <tr><td>Clay filter / method Reels</td><td>🟡 Organic only first</td><td>Strong for saves and follows, test organically first</td></tr>
+          <tr><td>Behind the scenes / team</td><td>❌ Keep organic</td><td>Trust-building content, not discovery content</td></tr>
+          <tr><td>Stories</td><td>🟡 Only for events</td><td>Use Story Ads for specific events or promotional offers</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="sec-title">Wednesday–Thursday demand strategy</p>
+    <div class="highlight-blue">
+      <p>Post a Reel on <strong>Tuesday at midday</strong> specifically framed around weekday afternoons: "The best time to come is when it's quiet." Show the space with no queue, the best light, the full attention of the team. Follow with a Story on Wednesday morning: "We're here. Come in." This creates a content loop that directly targets the low-footfall days.</p>
+    </div>
+  </div>
+
+  <!-- ===== NEXT STEPS ===== -->
+  <div id="nextsteps" class="section">
+    <p class="sec-title">Phase 1 — Instagram foundation (now)</p>
+    <div class="step-list" style="margin-bottom:1.2rem">
+      <div class="step"><div class="step-num">1</div><p>Fabbrica reviews reference reels and identifies preferred visual direction</p></div>
+      <div class="step"><div class="step-num">2</div><p>Fabbrica shares feedback, suggestions, and observations on this report</p></div>
+      <div class="step"><div class="step-num">3</div><p>Final report approved and signed off</p></div>
+      <div class="step"><div class="step-num">4</div><p>Caruma delivers 4 fully scripted, complex Reels for April production</p></div>
+      <div class="step"><div class="step-num">5</div><p>April content calendar delivered with dates, formats, and captions</p></div>
+    </div>
+
+    <p class="sec-title">Phase 2 — Expansion (60–90 days)</p>
+    <div class="card-row">
+      <div class="card">
+        <h3>Organic amplification</h3>
+        <ul>
+          <li>Activate micro-influencer partnerships in Vale do Paraíba</li>
+          <li>Launch Trial Reels to test new formats before publishing</li>
+          <li>Build a carousel series around the ceramic factory story</li>
+          <li>Start a recurring content format (e.g. "Friday coffee ritual")</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Paid promotion</h3>
+        <ul>
+          <li>First Meta Ads campaign: boost top-performing food Reels</li>
+          <li>Geo-target: 40km radius from Taubaté, Thu–Sun only</li>
+          <li>Retargeting: profile visitors who didn't follow yet</li>
+          <li>Budget: R$15–25/day, reviewed monthly</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="sec-title">Phase 3 — Community & offline (3–6 months)</p>
+    <div class="card">
+      <h3>Beyond Instagram</h3>
+      <ul>
+        <li><strong>Word of mouth</strong> — table cards or small printed prompts encouraging guests to tag and share</li>
+        <li><strong>Physical flyers</strong> — for the local Quiririm population and surrounding neighbourhoods</li>
+        <li><strong>Local business partnerships</strong> — cross-promotion with complementary establishments in the area</li>
+        <li><strong>Event strategy</strong> — craft fairs and cultural events, promoted 10–14 days in advance on Instagram Stories and Reels</li>
+        <li><strong>Google Business profile</strong> — keep updated with photos, hours, and posts to capture search traffic from tourists</li>
+      </ul>
+    </div>
+
+    <p class="sec-title">Summary</p>
+    <div class="highlight">
+      <p>A Fabbrica Café has a rare combination: a <strong>completely unique physical space</strong> and a <strong>fully open market position</strong> — women aged 30–50 who want a comfortable, authentic, and delicious café to visit with friends or a partner. Instagram should be built as the primary acquisition channel, generating desire, enabling visit planning, and encouraging organic sharing. The bet is on the space's authenticity and the quality of its products — exactly what this audience responds to.</p>
+    </div>
+  </div>
+
+</div>
+<script>
+function show(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
